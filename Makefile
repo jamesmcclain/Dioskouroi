@@ -1,7 +1,7 @@
 .PHONY: all
 .PRECIOUS: %.o
 
-all: problem1
+all: problem1 problem2
 
 %: %.o
 	gfortran $< -static-libgfortran -o $@
