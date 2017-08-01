@@ -1,7 +1,16 @@
 .PHONY: all
+.PRECIOUS: %.o
 
 all: problem1
 
-%: %.f95
-	gfortran $< -ggdb3 -o $@
+%: %.o
+	gfortran $< -static-libgfortran -o $@
 
+%.o: %.f95
+	gfortran -O3 $< -c -o $@
+
+clean:
+	rm -f *.o
+
+cleaner: clean
+	rm -f problem?
