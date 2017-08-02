@@ -1,4 +1,5 @@
 pure function is_factor(f,n)
+  implicit none
   integer*8, intent(in) :: n
   integer, intent(in)   :: f
   logical               :: is_factor
@@ -6,6 +7,7 @@ pure function is_factor(f,n)
 end function is_factor
 
 pure function is_prime(n)
+  implicit none
   integer, intent(in) :: n
   integer             :: i
   logical             :: is_prime
@@ -26,9 +28,10 @@ program problem3
   integer            :: i
   logical            :: is_factor, is_prime
 
-  do i=2,int(sqrt(dble(n)))
+  do i=int(sqrt(dble(n)))+1,2,-1
      if (is_factor(i,n) .and. is_prime(i)) then
         print *, i
+        exit
      end if
   end do
 
