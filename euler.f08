@@ -1,9 +1,26 @@
 module euler  
   implicit none 
   private
-  public :: digit, is_palindrome, is_factor, is_prime
+  public :: digit, is_palindrome, is_factor, is_prime, gcd
 
 contains      
+
+  ! gcd
+  pure function gcd(a0,b0)
+    implicit none
+    integer*8, intent(in) :: a0, b0
+    integer               :: a, b, t, gcd
+
+    a=a0
+    b=b0
+    do while (b /= 0)
+       t=b
+       b=mod(a,b)
+       a=t
+    end do
+    gcd=a
+  end function gcd
+
   ! Get the dth digit from the decimal representation of n.
   pure function digit(n,d)
     implicit none
