@@ -1,7 +1,7 @@
 .PHONY: all
 .PRECIOUS: %.o
 
-all: problem1 problem2 problem3 problem4
+all: problem1 problem2 problem3 problem4 problem5
 
 %: %.o euler.mod euler.o
 	gfortran $< euler.o -o $@
