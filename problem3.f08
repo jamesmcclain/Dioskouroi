@@ -6,7 +6,7 @@ program problem3
   integer            :: i
 
   do i=int(sqrt(dble(n)))+1,2,-1
-     if (is_factor(i,n) .and. is_prime(i)) then
+     if (is_factor(i,n) .and. is_prime(int8(i))) then
         print *, i
         exit
      end if
