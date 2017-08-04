@@ -61,9 +61,9 @@ contains
   ! Returns .true. if n is a prime number, otherwise return .false.
   pure function is_prime(n)
     implicit none
-    integer, intent(in) :: n
-    integer             :: i
-    logical             :: is_prime
+    integer*8, intent(in) :: n
+    integer               :: i
+    logical               :: is_prime
 
     is_prime = .true.
     do i=2,int(sqrt(real(n)))+1
