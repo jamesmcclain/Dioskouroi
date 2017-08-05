@@ -5,7 +5,7 @@ program problem8
   integer*16, dimension(n) :: numbers
   integer*16               :: temp2,best=-1
 
-  open(33,file='./data/problem8.txt')
+  open(33,file='./data/problem8.dat')
   read(33,*) numbers
 
   do i=1,n
