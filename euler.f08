@@ -1,7 +1,7 @@
 module euler  
   implicit none 
   private
-  public :: digit, is_palindrome, is_factor, is_prime, gcd
+  public :: digit, is_palindrome, is_factor, is_prime, gcd, tau
 
 contains      
 
@@ -65,13 +65,45 @@ contains
     integer               :: i
     logical               :: is_prime
 
-    is_prime = .true.
-    do i=2,int(sqrt(real(n)))+1
-       if (mod(n,i) == 0) then
-          is_prime = .false.
-          exit
-       end if
-    end do
+    if (n == 1) then
+       is_prime = .false.
+    else
+       is_prime = .true.
+       do i=2,min(n-1,ceiling(sqrt(dble(n))))
+          if (mod(n,i) == 0) then
+             is_prime = .false.
+             exit
+          end if
+       end do
+    end if
   end function is_prime
 
+  ! Euler tau function: The number of divisors of n
+  pure function tau(n)
+    implicit none
+    integer*8, intent(in) :: n
+    integer*8             :: current_n,p
+    integer               :: a,tau
+
+    tau=1
+    current_n=n
+
+1   if (is_prime(current_n)) then ! shortcut for prime numbers
+       tau=tau*2
+       current_n=1
+    end if
+    do p=2,current_n
+       if (is_prime(p) .and. (mod(current_n,p) == 0)) then
+          do a=ceiling(log(dble(n))/log(dble(p))),1,-1
+             if (mod(current_n,p**a) == 0) then
+                exit
+             end if
+          end do
+          tau=tau*(a+1)
+          current_n=current_n/(p**a)
+          go to 1
+       end if
+    end do
+  end function tau
+  
 end module euler
