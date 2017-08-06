@@ -1,7 +1,7 @@
 module euler  
   implicit none 
   private
-  public :: digit, is_palindrome, is_factor, is_prime, gcd, tau
+  public :: digit, is_palindrome, is_factor, is_prime, gcd, tau, binomial
 
 contains      
 
@@ -105,5 +105,22 @@ contains
        end if
     end do
   end function tau
+
+  ! Binomial coefficient
+  pure function binomial(n,k)
+    implicit none
+    integer*8, intent(in) :: n,k
+    integer*16            :: temp
+    integer*8             :: i,binomial
+
+    temp=1
+    do i=n-k+1,n
+       temp=temp*i
+    end do
+    do i=1,n-k
+       temp=temp/i
+    end do
+    binomial=temp
+  end function binomial
   
 end module euler
