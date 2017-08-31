@@ -1,8 +1,14 @@
 module euler  
   implicit none 
   private
-  public :: digit, is_palindrome, is_factor, is_prime, gcd, tau, binomial
-
+  public :: digit
+  public :: is_palindrome
+  public :: is_factor
+  public :: is_prime
+  public :: gcd
+  public :: sum_of_divisors
+  public :: binomial
+  public :: tau
 contains      
 
   ! gcd
@@ -77,6 +83,21 @@ contains
        end do
     end if
   end function is_prime
+
+  ! Returns the sum of proper divisors
+  pure function sum_of_divisors(n)
+    implicit none
+    integer*8, intent(in) :: n
+    integer*8             :: i
+    integer*8             :: sum_of_divisors
+
+    sum_of_divisors=1
+    do i=2,n-1
+       if (mod(n,i) == 0) then
+          sum_of_divisors=sum_of_divisors+i
+       end if
+    end do
+  end function sum_of_divisors
 
   ! Euler tau function: The number of divisors of n
   pure function tau(n)
