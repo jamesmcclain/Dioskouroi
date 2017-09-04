@@ -1,9 +1,10 @@
 .PHONY: all
 .PRECIOUS: euler.o
 
-all: problem1  problem2  problem3  problem4  problem5  problem6  problem7 \
+all: problem1  problem2  problem3  problem4  problem5  problem6  problem7  \
      problem8  problem9  problem10 problem11 problem12 problem13 problem14 \
-     problem15 problem16 problem17 problem18 problem19           problem21
+     problem15 problem16 problem17 problem18 problem19           problem21 \
+               problem23
 
 %: %.o euler.mod euler.o
 	gfortran $< euler.o -o $@
