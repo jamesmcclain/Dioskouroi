@@ -13,7 +13,9 @@ program problem20
   do i=1,100
      call multiply(n,i)
   end do
+
   print *, n
+  print *, sum_of_digits(n)
 
 contains
   ! not suitable for large factors
@@ -32,4 +34,21 @@ contains
   end subroutine multiply
 
   ! return sum of digits of n.  destroys n.
+  function sum_of_digits(n)
+    integer*16, dimension(m) :: n
+    integer                  :: sum_of_digits
+
+    sum_of_digits=0
+    do while (sum(n) > 0)
+       do i=m,1,-1
+          if (i > 1) then
+             n(i-1)=shiftl(mod(n(i),10),64)+n(i-1)    ! carry
+          else
+             sum_of_digits=sum_of_digits+mod(n(i),10) ! tally
+          end if
+          n(i)=n(i)/10
+       end do
+    end do
+  end function sum_of_digits
+
 end program problem20
