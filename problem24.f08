@@ -5,25 +5,26 @@ program problem24
   integer, dimension(digits) :: permskip,unused,answer
 
   n=n-1
+
   do i=digits,1,-1
      unused(i)=i-1
      if (n > 0) then
-        temp=factorial(i-1)
+        temp=factorial(i-1)         ! size of a sub-permutation
         permskip(digits+1-i)=n/temp ! sub-permutations to skip before correct order of magnitude
-        n=mod(n,temp)
+        n=mod(n,temp)               ! residual after sub-permutations
      else
         permskip(digits+1-i)=0
      end if
   end do
 
   do i=1,digits
-     skip=permskip(i) ! number of unused numbers to skip
+     skip=permskip(i)                             ! number of unused numbers to skip
      do j=1,digits
-        if (unused(j) /= -1 .and. skip == 0) then ! if no more to skip, report
-           answer(i)=unused(j)
-           unused(j)=-1
+        if (unused(j) /= -1 .and. skip == 0) then ! if no more to skip ...
+           answer(i)=unused(j)                    ! record unused number in answer
+           unused(j)=-1                           ! record previously-unused number as used
            goto 1
-        else if (unused(j) /= -1) then ! skip
+        else if (unused(j) /= -1) then            ! skip
            skip=skip-1
         end if
      end do
