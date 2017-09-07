@@ -1,7 +1,7 @@
 program problem20
   implicit none
   integer, parameter       :: m=10 ! 640 bits should be enough
-  integer*16, dimension(m) :: n ! 640 bits should be enough
+  integer*16, dimension(m) :: n
   integer                  :: i
 
   ! initialize number
@@ -35,6 +35,7 @@ contains
 
   ! return sum of digits of n.  destroys n.
   function sum_of_digits(n)
+    implicit none
     integer*16, dimension(m) :: n
     integer                  :: sum_of_digits
 

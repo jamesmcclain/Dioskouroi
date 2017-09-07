@@ -1,8 +1,8 @@
 program problem24
   implicit none
-  integer, parameter         :: digits=10
-  integer                    :: n=1000000,i,j,temp,skip
-  integer, dimension(digits) :: permskip,unused,answer
+  integer, parameter           :: digits=10
+  integer                      :: n=1000000,i,j,temp,skip
+  integer*1, dimension(digits) :: permskip,unused,answer
 
   n=n-1
 
