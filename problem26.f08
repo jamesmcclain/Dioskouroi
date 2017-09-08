@@ -9,7 +9,7 @@ program problem26
         answer=i
      end if
   end do
-  
+
   print *, answer
 
 contains
@@ -19,7 +19,7 @@ contains
     integer, parameter       :: size=1000000
     integer, dimension(size) :: quotients,remainders
     integer                  :: period,i,j
-    
+
     quotients(1)=0
     remainders(1)=1
 
