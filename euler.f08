@@ -1,15 +1,41 @@
 module euler  
   implicit none 
   private
-  public :: digit
-  public :: is_palindrome
-  public :: is_factor
-  public :: is_prime
-  public :: gcd
-  public :: sum_of_divisors
   public :: binomial
+  public :: digit
+  public :: gcd
+  public :: is_factor
+  public :: is_palindrome
+  public :: is_prime
+  public :: number_length
+  public :: sum_of_divisors
   public :: tau
 contains      
+
+  ! Binomial coefficient
+  pure function binomial(n,k)
+    implicit none
+    integer*8, intent(in) :: n,k
+    integer*16            :: temp
+    integer*8             :: i,binomial
+
+    temp=1
+    do i=n-k+1,n
+       temp=temp*i
+    end do
+    do i=1,n-k
+       temp=temp/i
+    end do
+    binomial=temp
+  end function binomial
+  
+  ! Get the dth digit from the decimal representation of n.
+  pure function digit(n,d)
+    implicit none
+    integer, intent(in) :: n, d
+    integer             :: digit
+    digit = mod(n,10**d)/(10**(d-1))
+  end function digit
 
   ! gcd
   pure function gcd(a0,b0)
@@ -27,13 +53,14 @@ contains
     gcd=a
   end function gcd
 
-  ! Get the dth digit from the decimal representation of n.
-  pure function digit(n,d)
+  ! Returns .true. if f is a factor of n, otherwise returns .false.
+  pure function is_factor(f,n)
     implicit none
-    integer, intent(in) :: n, d
-    integer             :: digit
-    digit = mod(n,10**d)/(10**(d-1))
-  end function digit
+    integer*8, intent(in) :: n
+    integer, intent(in)   :: f
+    logical               :: is_factor
+    is_factor = (mod(n,f)==0)
+  end function is_factor
 
   ! Returns .true. if the decimal representation of n is a palindrome,
   ! otherwise returns .false.
@@ -55,15 +82,6 @@ contains
     end do
   end function is_palindrome
 
-  ! Returns .true. if f is a factor of n, otherwise returns .false.
-  pure function is_factor(f,n)
-    implicit none
-    integer*8, intent(in) :: n
-    integer, intent(in)   :: f
-    logical               :: is_factor
-    is_factor = (mod(n,f)==0)
-  end function is_factor
-
   ! Returns .true. if n is a prime number, otherwise return .false.
   pure function is_prime(n)
     implicit none
@@ -83,6 +101,14 @@ contains
        end do
     end if
   end function is_prime
+
+  ! Get the length of the decimal representation of a number
+  pure function number_length(n)
+    implicit none
+    integer*8, intent(in) :: n
+    integer               :: number_length
+    number_length = ceiling(log10(float(n)))
+  end function number_length
 
   ! Returns the sum of proper divisors
   pure function sum_of_divisors(n)
@@ -127,21 +153,4 @@ contains
     end do
   end function tau
 
-  ! Binomial coefficient
-  pure function binomial(n,k)
-    implicit none
-    integer*8, intent(in) :: n,k
-    integer*16            :: temp
-    integer*8             :: i,binomial
-
-    temp=1
-    do i=n-k+1,n
-       temp=temp*i
-    end do
-    do i=1,n-k
-       temp=temp/i
-    end do
-    binomial=temp
-  end function binomial
-  
 end module euler
