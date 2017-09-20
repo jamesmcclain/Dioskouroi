@@ -107,7 +107,11 @@ contains
     implicit none
     integer*8, intent(in) :: n
     integer               :: number_length
-    number_length = ceiling(log10(float(n)))
+    real*8                :: temp
+
+    temp=log10(dble(n))
+    if (mod(temp,1.0_8)==0.0_8) temp=temp+0.01
+    number_length = ceiling(temp)
   end function number_length
 
   ! Returns the sum of proper divisors
