@@ -6,7 +6,7 @@ all: problem1  problem2  problem3  problem4  problem5  problem6  problem7  \
      problem15 problem16 problem17 problem18 problem19 problem20 problem21 \
      problem22 problem23 problem24 problem25 problem26 problem27 problem28 \
      problem29 problem30 problem31 problem32 problem33 problem34 problem35 \
-     problem36
+     problem36 problem37
 
 problem3: euler.mod euler.o problem3.o
 	gfortran $@.o euler.o -o $@
@@ -45,6 +45,9 @@ problem35: euler.mod euler.o problem35.o
 	gfortran $@.o euler.o -o $@
 
 problem36: euler.mod euler.o problem36.o
+	gfortran $@.o euler.o -o $@
+
+problem37: euler.mod euler.o problem37.o
 	gfortran $@.o euler.o -o $@
 
 %: %.o
