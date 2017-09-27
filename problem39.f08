@@ -26,6 +26,4 @@ program problem39
 
   print *, best
 
-contains
-
 end program problem39
