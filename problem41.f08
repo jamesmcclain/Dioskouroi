@@ -38,8 +38,8 @@ program problem41
            i=i+1
         end if
 
-        ! End of Heap's Algorithm
      end do
+     ! End of Heap's Algorithm
 
      if (answer>0) exit
 
