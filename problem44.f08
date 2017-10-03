@@ -1,18 +1,18 @@
 program problem44
   implicit none
-  integer, parameter :: limit=100
-  integer            :: answer,j,k,n
-  double precision   :: temp
+  integer, parameter :: limit=1000
+  integer            :: answer,a,b,n,j
+  double precision   :: temp1,temp2
 
-  do j=1,limit
-     do k=1,limit
-        temp=solution_in_n(j,k)
-        if (whole(temp)) then
-           n=int(temp)
-           temp=solution_in_k(n,j)
-           if (whole(temp)) then
-              print *, n,j,int(temp)
-           end if
+  do a=1,limit
+     do b=1,limit
+        if (b == a) cycle
+        temp1=solution_n(a,b)
+        temp2=solution_nj(a,b)
+        if (temp1 > 0 .and. whole(temp1) .and. whole(temp2)) then
+           n=int(temp1)
+           j=n-int(temp2)
+           print *, a,b,n,j,P(n-b),P(n+j)-P(n)
         end if
      end do
   end do
@@ -21,25 +21,28 @@ program problem44
 
 contains
 
-  ! Solution in n to  P_{n+j} - P_{n} = P_{n-k}.
-  pure function solution_in_n(j,k)
+  ! Solution in n to  2P_{n} = P_{n+a} - P_{n-b}
+  pure function solution_n(a,b)
     implicit none
-    integer, intent(in) :: j,k
-    double precision    :: D,solution_in_n
+    integer, intent(in) :: a,b
+    double precision    :: solution_n
+    solution_n = dble(-3*a*a + a - 3*b*b - b)/(6*(a-b))
+  end function solution_n
 
-    D = sqrt(dble(72*j*j + 72*j*k + 1))
-    solution_in_n = (D + 6*(j+k) +1)/6
-  end function solution_in_n
-
-  ! Solution in k to P_{n} + P_{n+j} = P_{n+k}.
-  pure function solution_in_k(n,j)
+  pure function solution_nj(a,b,j)
     implicit none
-    integer, intent(in) :: n,j
-    double precision D,solution_in_k
+    integer, intent(in) :: a,b
+    double precision    :: D,solution_nj
+    D = sqrt(dble(27*a*a + 18*a*b + 36*a*j - 9*b*b + 36*b*j + 1))
+    solution_nj = (D + 3*a + 3*b + 6*j + 1)/6
+  end function solution_nj
 
-    D = sqrt(dble(36*j*j + 12*j*(6*n-1) + 72*n*n - 24*n + 1))
-    solution_in_k = (D - 6*n + 1)/6
-  end function solution_in_k
+  pure function P(n)
+    implicit none
+    integer, intent(in) :: n
+    integer             :: P
+    P=n*(3*n-1)/2
+  end function P
 
   pure function whole(x)
     implicit none
