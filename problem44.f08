@@ -1,18 +1,21 @@
 program problem44
   implicit none
-  integer, parameter :: limit=1000
-  integer            :: answer,a,b,n,j
-  double precision   :: temp1,temp2
+  integer :: answer,j,k,Pj,Pk,D
 
-  do a=1,limit
-     do b=1,limit
-        if (b == a) cycle
-        temp1=solution_n(a,b)
-        temp2=solution_nj(a,b)
-        if (temp1 > 0 .and. whole(temp1) .and. whole(temp2)) then
-           n=int(temp1)
-           j=n-int(temp2)
-           print *, a,b,n,j,P(n-b),P(n+j)-P(n)
+  answer=huge(answer)
+
+  do k=2,huge(k)
+     Pk=P(k)
+     if (Pk - P(k-1) > answer .or. Pk < 0) exit ! already too large, short circuit
+     do j=k-1,1,-1
+        Pj=P(j)
+        D = Pk-Pj
+        if (D > answer .or. Pj < 0) exit ! already too large, short circuit
+        if (is_P(Pj + Pk) .and. is_P(D)) then
+           print *, j,k,Pj,Pk,D
+           if (D<answer) then
+              answer=D
+           end if
         end if
      end do
   end do
@@ -21,28 +24,21 @@ program problem44
 
 contains
 
-  ! Solution in n to  2P_{n} = P_{n+a} - P_{n-b}
-  pure function solution_n(a,b)
-    implicit none
-    integer, intent(in) :: a,b
-    double precision    :: solution_n
-    solution_n = dble(-3*a*a + a - 3*b*b - b)/(6*(a-b))
-  end function solution_n
-
-  pure function solution_nj(a,b,j)
-    implicit none
-    integer, intent(in) :: a,b
-    double precision    :: D,solution_nj
-    D = sqrt(dble(27*a*a + 18*a*b + 36*a*j - 9*b*b + 36*b*j + 1))
-    solution_nj = (D + 3*a + 3*b + 6*j + 1)/6
-  end function solution_nj
-
   pure function P(n)
     implicit none
     integer, intent(in) :: n
     integer             :: P
     P=n*(3*n-1)/2
   end function P
+
+  pure function is_P(x)
+    implicit none
+    integer, intent(in) :: x
+    double precision    :: n
+    logical             :: is_P
+    n = (sqrt(dble(24*x + 1)) + 1)/6
+    is_P = (whole(n))
+  end function is_P
 
   pure function whole(x)
     implicit none
