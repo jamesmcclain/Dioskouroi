@@ -35,8 +35,8 @@ contains
     logical               :: predicate
 
     temp1=score(n)
-    temp2 = (/ (score(n*i) == temp1, i = 2, 6) /)
-    predicate = all(temp2)
+    temp2=(/ (score(n*i) == temp1, i = 2, 6) /)
+    predicate=all(temp2)
 
   end function predicate
 
