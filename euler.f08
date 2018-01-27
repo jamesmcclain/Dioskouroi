@@ -3,9 +3,11 @@ module euler
   private
   public :: binomial
   public :: digit
+  public :: digit16
   public :: gcd
   public :: is_factor
   public :: is_palindrome
+  public :: is_palindrome16
   public :: is_prime
   public :: number_length
   public :: sum_of_divisors
@@ -36,6 +38,15 @@ contains
     integer             :: digit
     digit = mod(n,10**d)/(10**(d-1))
   end function digit
+
+  ! Get the dth digit from the decimal representation of n.
+  pure function digit16(n,d)
+    implicit none
+    integer*16, intent(in) :: n
+    integer, intent(in)    :: d
+    integer                :: digit16
+    digit16 = mod(n,10_16**d)/(10_16**(d-1))
+  end function digit16
 
   ! gcd
   pure function gcd(a0,b0)
@@ -81,6 +92,28 @@ contains
        end if
     end do
   end function is_palindrome
+
+  ! Returns .true. if the decimal representation of n is a palindrome,
+  ! otherwise returns .false.
+  pure function is_palindrome16(n)
+    implicit none
+    integer*16, intent(in) :: n
+    real*16                :: temp
+    integer                :: i, j, digits
+    logical                :: is_palindrome16
+
+    temp=n*1.0
+    digits = ceiling(log10(temp))
+    is_palindrome16 = .true.
+
+    do i=1,digits
+       j = digits+1-i
+       if (digit16(n,i) /= digit16(n,j)) then
+          is_palindrome16 = .false.
+          exit
+       end if
+    end do
+  end function is_palindrome16
 
   ! Returns .true. if n is a prime number, otherwise return .false.
   pure function is_prime(n)
