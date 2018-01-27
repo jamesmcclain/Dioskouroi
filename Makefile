@@ -8,7 +8,7 @@ all: problem1  problem2  problem3  problem4  problem5  problem6  problem7  \
      problem29 problem30 problem31 problem32 problem33 problem34 problem35 \
      problem36 problem37 problem38 problem39 problem40 problem41 problem42 \
      problem43 problem44 problem45 problem46 problem47 problem48 problem49 \
-     problem50 problem51 problem52
+     problem50 problem51 problem52 problem53
 
 problem3: euler.mod euler.o problem3.o
 	gfortran $@.o euler.o -o $@
