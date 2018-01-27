@@ -8,8 +8,8 @@ program problem43
   ! Start of Heap's Algorithm
   ! Source: https://en.wikipedia.org/wiki/Heap%27s_algorithm
   do i=0,n-1
-     c(i)=0
-     A(i)=i
+     c(i+1)=0
+     A(i+1)=i
   end do
 
   if (predicate(A)) answer=answer+number(A,n)
