@@ -11,12 +11,15 @@ program problem57
 
   ! Reference: http://mathworld.wolfram.com/PellNumber.html
   do i=1,limit
-     print *, pn
-     temp=2*pn + pm
-     pm=pn
-     pn=temp
-  end do
+     print *, i, qn, pn
 
-  print *, "Hello world"
+     temp=pn
+     pn=2*pn+pm
+     pm=temp
+
+     temp=qn
+     qn=2*qn+qm
+     qm=temp
+  end do
 
 end program problem57
