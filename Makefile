@@ -81,6 +81,9 @@ problem51: euler.mod euler.o problem51.o
 problem55: euler.mod euler.o problem55.o
 	gfortran $@.o euler.o -o $@
 
+problem57: problem57.f08
+	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $@.f08 -lfm -o $@
+
 %: %.o
 	gfortran $< -o $@
 
