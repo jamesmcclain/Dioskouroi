@@ -12,7 +12,6 @@ program problem64
   end do
 
   print *, count
-  ! print *, period(739)
 
 contains
 
@@ -43,13 +42,6 @@ contains
 
     temp2=mod(one/temp1,one)
     do period=1,huge(period)
-       ! if (n==739) then ! XXX
-       !    print *, period,to_dp(temp1),to_dp(temp2),to_dp(abs(temp1-temp2))
-       ! end if
-       ! if (period>100000) then ! XXX
-       !    print *, n
-       !    go to 100
-       ! end if
        if (abs(temp1-temp2)<cutoff) go to 100
        temp2=mod(one/temp2,one)
     end do
