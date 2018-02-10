@@ -13,85 +13,85 @@ all: problem1  problem2  problem3  problem4  problem5  problem6  problem7  \
      problem64
 
 problem3: euler.mod euler.o problem3.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem4: euler.mod euler.o problem4.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem5: euler.mod euler.o problem5.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem7: euler.mod euler.o problem7.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem10: euler.mod euler.o problem10.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem12: euler.mod euler.o problem12.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem15: euler.mod euler.o problem15.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem21: euler.mod euler.o problem21.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem23: euler.mod euler.o problem23.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem27: euler.mod euler.o problem27.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem33: euler.mod euler.o problem33.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem35: euler.mod euler.o problem35.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem36: euler.mod euler.o problem36.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem37: euler.mod euler.o problem37.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem38: euler.mod euler.o problem38.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem40: euler.mod euler.o problem40.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem41: euler.mod euler.o problem41.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem46: euler.mod euler.o problem46.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem47: euler.mod euler.o problem47.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem49: euler.mod euler.o problem49.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem50: euler.mod euler.o problem50.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem51: euler.mod euler.o problem51.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem55: euler.mod euler.o problem55.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem56: problem56.f08
-	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $@.f08 -lfm -o $@
+	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $(CFLAGS) $@.f08 -lfm -o $@
 
 problem57: problem57.f08
-	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $@.f08 -lfm -o $@
+	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $(CFLAGS) $@.f08 -lfm -o $@
 
 problem58: euler.mod euler.o problem58.f08
-	gfortran $@.f08 euler.o -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem60: euler.mod euler.o problem60.f08
-	gfortran $@.f08 euler.o -O3 -o $@
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem64: problem64.f08
 	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $(CFLAGS) $@.f08 -lfm -o $@
