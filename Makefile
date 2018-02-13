@@ -10,7 +10,7 @@ all: problem1  problem2  problem3  problem4  problem5  problem6  problem7  \
      problem43 problem44 problem45 problem46 problem47 problem48 problem49 \
      problem50 problem51 problem52 problem53           problem55 problem56 \
      problem57 problem58 problem59 problem60           problem62 problem63 \
-     problem64
+     problem64 problem65
 
 problem3: euler.mod euler.o problem3.f08
 	gfortran $(CFLAGS) $@.f08 euler.o -o $@
@@ -94,6 +94,9 @@ problem60: euler.mod euler.o problem60.f08
 	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
 problem64: problem64.f08
+	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $(CFLAGS) $@.f08 -lfm -o $@
+
+problem65: problem65.f08
 	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $(CFLAGS) $@.f08 -lfm -o $@
 
 %: %.f08
