@@ -31,6 +31,4 @@ program problem65
 
   print *, i
 
-contains
-
 end program problem65
