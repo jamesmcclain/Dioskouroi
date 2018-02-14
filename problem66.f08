@@ -42,6 +42,7 @@ contains
 
   end subroutine cf
 
+  ! Reference: https://en.wikipedia.org/wiki/Pell%27s_equation
   function solve(D,array)
     use fmzm
     implicit none
