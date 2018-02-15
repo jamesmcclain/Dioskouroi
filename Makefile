@@ -93,6 +93,9 @@ problem58: euler.mod euler.o problem58.f08
 problem60: euler.mod euler.o problem60.f08
 	gfortran $(CFLAGS) $@.f08 euler.o -o $@
 
+problem61: euler.mod euler.o problem61.f08
+	gfortran $(CFLAGS) $@.f08 euler.o -o $@
+
 problem64: problem64.f08
 	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $(CFLAGS) $@.f08 -lfm -o $@
 
