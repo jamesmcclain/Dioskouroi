@@ -12,6 +12,13 @@ module euler
   public :: number_length
   public :: sum_of_divisors
   public :: tau
+  public :: is_triangular
+  public :: is_square
+  public :: is_pentagonal
+  public :: is_hexagonal
+  public :: is_heptagonal
+  public :: is_octagonal
+
 contains      
 
   ! Binomial coefficient
@@ -189,5 +196,84 @@ contains
        end if
     end do
   end function tau
+
+  pure function is_triangular(m)
+    implicit none
+    integer, intent(in) :: m
+    double precision    :: temp
+    logical             :: is_triangular,plus,minus
+
+    temp=(1 + sqrt(1.0 + 4*2*m))/2
+    plus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    temp=(1 - sqrt(1.0 + 4*2*m))/2
+    minus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    is_triangular=plus .or. minus
+
+  end function is_triangular
+
+  pure function is_square(m)
+    implicit none
+    integer, intent(in) :: m
+    logical             :: is_square
+
+    is_square=mod(sqrt(dble(m)),1.0)==0.0
+
+  end function is_square
+
+  pure function is_pentagonal(m)
+    implicit none
+    integer, intent(in) :: m
+    double precision    :: temp
+    logical             :: is_pentagonal,plus,minus
+
+    temp=(1 + sqrt(1.0 + 4*3*2*m))/6
+    plus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    temp=(1 - sqrt(1.0 + 4*3*2*m))/6
+    minus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    is_pentagonal=plus .or. minus
+
+  end function is_pentagonal
+
+  pure function is_hexagonal(m)
+    implicit none
+    integer, intent(in) :: m
+    double precision    :: temp
+    logical             :: is_hexagonal,plus,minus
+
+    temp=(1 + sqrt(1.0 + 4*2*m))/4
+    plus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    temp=(1 - sqrt(1.0 + 4*2*m))/4
+    minus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    is_hexagonal=plus .or. minus
+
+  end function is_hexagonal
+
+  pure function is_heptagonal(m)
+    implicit none
+    integer, intent(in) :: m
+    double precision    :: temp
+    logical             :: is_heptagonal,plus,minus
+
+    temp=(3 + sqrt(9.0 + 4*5*2*m))/10
+    plus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    temp=(3 - sqrt(9.0 + 4*5*2*m))/10
+    minus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    is_heptagonal=plus .or. minus
+
+  end function is_heptagonal
+
+  pure function is_octagonal(m)
+    implicit none
+    integer, intent(in) :: m
+    double precision    :: temp
+    logical             :: is_octagonal,plus,minus
+
+    temp=(2 + sqrt(4.0 + 4*3*m))/6
+    plus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    temp=(2 - sqrt(4.0 + 4*3*m))/6
+    minus=(temp>0) .and. (mod(temp,1.0)==0.0)
+    is_octagonal=plus .or. minus
+
+  end function is_octagonal
 
 end module euler
