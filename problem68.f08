@@ -46,8 +46,8 @@ contains
     integer                :: i
     integer*16             :: temp
 
-    if (.not. any(array(5:9)==10)) return ! rotational symmetry
-    if (.not. all(array(6:9)>array(5))) return ! 16-digit answer
+    if (.not. any(array(5:9)==10)) return ! 16-digit answer
+    if (.not. all(array(6:9)>array(5))) return ! rotational symmetry
 
     totals(1)=array(5)+array(0)+array(1)
     totals(2)=array(6)+array(1)+array(2)
