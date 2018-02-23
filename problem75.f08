@@ -9,6 +9,7 @@ program problem75
   end do
   answer=0
 
+  ! https://en.wikipedia.org/wiki/Pythagorean_triple#Generating_a_triple
   do m=1,int(ceiling(sqrt(dble(limit))))
      do n=1,m-1
         if (.not. predicate(m,n)) cycle
