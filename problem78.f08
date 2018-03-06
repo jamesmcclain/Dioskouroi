@@ -1,7 +1,7 @@
 program problem78
   implicit none
   integer*16                       :: i,temp
-  integer, parameter               :: memo_size=1000
+  integer, parameter               :: memo_size=1000,divisor=1000
   integer*16, dimension(memo_size) :: memo
 
   ! https://oeis.org/A000041
@@ -10,12 +10,12 @@ program problem78
   end do
   memo(1:10)=(/ 1, 2, 3, 5, 7, 11, 15, 22, 30, 42 /)
   
-  ! do i=1,memo_size
-  !    temp=partitions(i)
-  !    if (mod(temp,1000000)==0) then
-  !       print *, i,temp
-  !    end if
-  ! end do
+  do i=1,memo_size
+     temp=partitions(i)
+     if (mod(temp,divisor)==0) then
+        print *, i,temp
+     end if
+  end do
 
 contains
 
