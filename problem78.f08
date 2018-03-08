@@ -17,7 +17,7 @@ program problem78
      memo(i)=to_im(-1)
   end do
   memo(0)=one
-  
+
   do i=1,memo_size
      temp=partitions(i)
      if (mod(temp,divisor)==zero) then
@@ -34,7 +34,7 @@ contains
     integer             :: plus_minus
 
     plus_minus=(-1)**((n-1)/2)
-    
+
   end function plus_minus
 
   ! https://oeis.org/A001318
