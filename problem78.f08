@@ -1,47 +1,37 @@
 program problem78
   use fmzm
   implicit none
-  integer                        :: i
-  type(im)                       :: temp,divisor,neg_one,zero,one,two
-  integer, parameter             :: memo_size=1000
-  type(im), dimension(memo_size) :: memo
+  integer            :: i
+  type(im)           :: temp,divisor,neg_one,zero,one,two
+  integer, parameter :: memo_size=100000
+  type(im)           :: memo(0:memo_size)
 
   neg_one=to_im(-1)
   zero=to_im(0)
   one=to_im(1)
   two=to_im(2)
-  divisor=to_im(1000)
+  divisor=to_im(1000000)
 
-  ! ...
   ! https://oeis.org/A000041
   do i=1,memo_size
      memo(i)=to_im(-1)
   end do
-  memo(1)=to_im(1)
-  memo(2)=to_im(2)
-  memo(3)=to_im(3)
-  memo(4)=to_im(5)
-  memo(5)=to_im(7)
-  memo(6)=to_im(11)
-  memo(7)=to_im(15)
-  memo(8)=to_im(22)
-  memo(9)=to_im(30)
-  memo(10)=to_im(42)
+  memo(0)=one
   
   do i=1,memo_size
-     temp=partitions(to_im(i))
+     temp=partitions(i)
      if (mod(temp,divisor)==zero) then
         print *, i
+        exit
      end if
   end do
 
 contains
 
-  function plus_minus(n)
-    use fmzm
+  pure function plus_minus(n)
     implicit none
-    type(im), intent(in) :: n
-    type(im)             :: plus_minus
+    integer, intent(in) :: n
+    integer             :: plus_minus
 
     plus_minus=(-1)**((n-1)/2)
     
@@ -49,12 +39,11 @@ contains
 
   ! https://oeis.org/A001318
   function pentagonal(n)
-    use fmzm
     implicit none
-    type(im), intent(in) :: n
-    type(im)             :: pentagonal,m
+    integer, intent(in) :: n
+    integer             :: m,pentagonal
 
-    if (mod(n,two)==one) then
+    if (mod(n,2)==1) then
        m=1
     else
        m=-1
@@ -65,29 +54,30 @@ contains
   end function pentagonal
 
   ! https://en.wikipedia.org/wiki/Partition_(number_theory)#Generating_function
-  recursive function partitions(n) result(r)
+  function partitions(n)
     use fmzm
     implicit none
-    type(im), intent(in) :: n
-    type(im)             :: r,i
+    integer, intent(in) :: n
+    integer             :: i
+    type(im)            :: partitions
 
-    if (n<zero) then
-       r=0
+    if (n<0) then
+       partitions=zero
        return
-    else if (n==zero) then
-       r=1
+    else if (n==0) then
+       partitions=one
        return
-    else if (memo(to_int(n))>neg_one) then
-       r=memo(to_int(n))
+    else if (memo(n)>neg_one) then
+       partitions=memo(n)
        return
     else
-       r=zero
-       i=one
+       partitions=zero
+       i=1
        do while (pentagonal(i)<=n)
-          r=r+plus_minus(i)*partitions(n-pentagonal(i))
+          partitions=partitions+to_im(plus_minus(i))*memo(n-pentagonal(i))
           i=i+1
        end do
-       memo(to_int(n))=r
+       memo(n)=partitions
        return
     end if
 
