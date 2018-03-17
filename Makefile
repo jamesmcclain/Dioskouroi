@@ -12,7 +12,7 @@ all: problem1  problem2  problem3  problem4  problem5  problem6  problem7  \
      problem57 problem58 problem59 problem60 problem61 problem62 problem63 \
      problem64 problem65 problem66 problem67 problem68 problem69 problem70 \
      problem71 problem72 problem73 problem74 problem75 problem76 problem77 \
-     problem78 problem79 problem80 problem81
+     problem78 problem79 problem80 problem81 problem82
 
 problem3: euler.mod euler.o problem3.f08
 	gfortran $(CFLAGS) $@.f08 euler.o -o $@
