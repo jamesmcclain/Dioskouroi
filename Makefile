@@ -124,9 +124,6 @@ problem78: problem78.f08
 problem80: problem80.f08
 	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $(CFLAGS) $@.f08 -lfm -o $@
 
-problem97: problem97.f08
-	gfortran -L$(HOME)/local/fmlib/8-20171224 -I$(HOME)/local/fmlib/8-20171224 $(CFLAGS) $@.f08 -lfm -o $@
-
 %: %.f08
 	gfortran $(CFLAGS) $< -o $@
 
